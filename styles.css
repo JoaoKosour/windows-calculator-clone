@@ -1,0 +1,99 @@
+*,
+::after,
+::before {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Gill Sans',
+        'Gill Sans MT',
+        Calibri,
+        'Trebuchet MS',
+        sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(30, 34, 42);
+    height: 100vh;
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-gap: 3px;
+    background: #1F1F1F;
+    border: #1F1F1F 5px solid;
+    box-shadow: rgba(0, 0, 0, 0.411) 0px 0px 20px;
+}
+
+.display-container {
+    position: relative;
+    grid-column: 1 / -1;
+    background-color: #1F1F1F;
+    height: 200px;
+}
+
+.calc-button {
+    background-color: rgb(16, 16, 16);
+    height: 52px;
+}
+
+.calc-button:hover {
+    background: #3B3B3B;
+}
+
+.small {
+    font-size: 15px;
+}
+
+.dark {
+    background: rgb(6, 6, 6);
+}
+
+.light {
+    background: #2C2C2C;
+}
+
+
+.top-text-buttons {
+    float: right;
+}
+
+.top-text-buttons>button {
+    height: 20px;
+    width: 40px;
+    background: #1F1F1F;
+}
+
+.display-container>p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: end;
+}
+
+.display {
+    position: absolute;
+    bottom: 20%;
+    right: 5%;
+    font-size: 50px;
+}
+
+.bottom-wrapper {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom-display-button {
+    padding: 5% 15% 5% 15%;
+}
+
+.bottom-display-button:hover {
+    background: #3B3B3B;
+}

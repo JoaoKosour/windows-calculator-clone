@@ -24,7 +24,7 @@ body {
 .calculator-container {
     display: grid;
     grid-template-columns: 80px 80px 80px 80px;
-    grid-gap: 3px;
+    grid-gap: 2px;
     background: #1F1F1F;
     border: #1F1F1F 5px solid;
     box-shadow: rgba(0, 0, 0, 0.411) 0px 0px 20px;
@@ -51,13 +51,12 @@ body {
 }
 
 .dark {
-    background: rgb(6, 6, 6);
+    background: rgb(5, 5, 5);
 }
 
 .light {
     background: #2C2C2C;
 }
-
 
 .top-text-buttons {
     float: right;

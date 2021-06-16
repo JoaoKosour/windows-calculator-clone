@@ -5,10 +5,15 @@ var saveOperation = '';
 var display = document.getElementById('display')
 var remmember = document.getElementById('display-firstNumber')
 var resultAlreadyComputed = false;
-var remmemberDisplayNumber;
-
+var firstRemmember = 0;
+var secondRemmember = 0;
+var displayNumber = 0;
 
 function registerNumber(number) {
+    if (firstNumber.length > 9 || secondNumber.length > 9)
+        display.style.fontSize = '25px'
+    else
+        display.style.fontSize = '50px'
     if (firstNumber.length > 18) return; //we use this 'if' to prevent the number from going over the display size. you can set the number higher if you make the fontsize smaller
     if (computingSecondNumber) {
         secondNumber.push(number)
@@ -22,15 +27,15 @@ function registerNumber(number) {
 function operate(operation) {
     var num_1 = parseFloat(firstNumber.join('')),
         num_2, temp;
-    if (computingSecondNumber)
+    if (computingSecondNumber && secondNumber.length)
         num_2 = parseFloat(secondNumber.join(''))
     else
         num_2 = 0;
+
     switch (operation) {
         case '+':
             saveOperation = '+'
-            temp = num_1 + num_2;
-            firstNumber = ('' + temp).split('')
+
             break;
         case '-':
             saveOperation = '-'
@@ -48,19 +53,17 @@ function operate(operation) {
             firstNumber = ('' + temp).split('')
             break;
     }
+    if (computingSecondNumber) {
+        equal()
+        return;
+    }
     computingSecondNumber = true;
-    renderDisplay()
 }
 
 function renderDisplay() {
-    if (firstNumber.length > 9)
-        display.style.fontSize = '25px'
-    else
-        display.style.fontSize = '50px'
-
     if (resultAlreadyComputed) {
-        remmember.innerHTML = remmemberDisplayNumber + ' ' + saveOperation + ' ' + secondNumber.join('') + ' ='
-        display.innerHTML = firstNumber.join('');
+        remmember.innerHTML = firstRemmember + ' ' + saveOperation + ' ' + secondRemmember + ' ='
+        display.innerHTML = displayNumber;
         return;
     }
 
@@ -74,7 +77,6 @@ function renderDisplay() {
     }
 
     display.innerHTML = firstNumber.join('');
-    console.log(firstNumber)
 }
 
 function deleteOneNumber() {
@@ -96,29 +98,34 @@ function resetCalculator() {
     remmember.innerHTML = ''
     result = 0;
     resultAlreadyComputed = false;
+    firstRemmember = 0;
+    secondRemmember = 0;
+    displayNumber = 0;
 }
 
 function equal() {
-    if (!secondNumber.length) return;
-    computingSecondNumber = false;
-    remmemberDisplayNumber = parseFloat(firstNumber.join(''))
-    var num_2 = parseFloat(secondNumber.join(''))
-    var temp = 0;
+    firstRemmember = parseFloat(firstNumber.join(''));
+    if (secondNumber.length)
+        secondRemmember = parseFloat(secondNumber.join(''));
+
     switch (saveOperation) {
         case '+':
-            temp = remmemberDisplayNumber + num_2;
+            displayNumber = firstRemmember + secondRemmember;
             break;
         case '-':
-            temp = remmemberDisplayNumber - num_2;
+            displayNumber = firstRemmember - secondRemmember;
             break;
         case '*':
-            temp = remmemberDisplayNumber * num_2;
+            displayNumber = firstRemmember * secondRemmember;
             break;
         case '/':
-            temp = remmemberDisplayNumber / num_2;
+            displayNumber = firstRemmember / secondRemmember;
             break;
     }
-    firstNumber = ('' + temp).split('')
+
+    firstNumber = ('' + displayNumber).split('')
+    secondNumber = []
     resultAlreadyComputed = true;
+    console.log(displayNumber)
     renderDisplay()
 }

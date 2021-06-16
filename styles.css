@@ -75,7 +75,7 @@ body {
     text-align: end;
 }
 
-.display {
+#display {
     position: absolute;
     bottom: 20%;
     right: 5%;
@@ -96,7 +96,6 @@ body {
 .bottom-display-button:hover {
     background: #3B3B3B;
 }
-
 
 .clickable:active {
     background-color: #575757;

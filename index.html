@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="display">0</div>
+            <div id="display">0</div>
             <div class="bottom-wrapper">
                 <div class="bottom-display-button small clickable">MC</div>
                 <div class="bottom-display-button small clickable">MR</div>
@@ -33,35 +33,35 @@
         </div>
 
         <button class="calc-button small clickable">%</button>
-        <button class="calc-button small clickable">CE</button>
-        <button class="calc-button small clickable">C</button>
-        <button class="calc-button small clickable">←</button>
+        <button class="calc-button small clickable" onclick="resetCalculator()">CE</button>
+        <button class="calc-button small clickable" onclick="resetCalculator()">C</button>
+        <button class="calc-button small clickable" onclick="deleteOneNumber()">←</button>
 
 
         <button class="calc-button small clickable">1/x</button>
         <button class="calc-button small clickable">x^2</button>
         <button class="calc-button small clickable">√x</button>
-        <button class="calc-button small clickable">/</button>
+        <button class="calc-button small clickable" onclick="operate('/')">/</button>
 
-        <button class="calc-button dark clickable">7</button>
-        <button class="calc-button dark clickable">8</button>
-        <button class="calc-button dark clickable">9</button>
-        <button class="calc-button clickable">x</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(7)">7</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(8)">8</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(9)">9</button>
+        <button class="calc-button clickable" onclick="operate('*')">x</button>
 
-        <button class="calc-button dark clickable">4</button>
-        <button class="calc-button dark clickable">5</button>
-        <button class="calc-button dark clickable">6</button>
-        <button class="calc-button">--</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(4)">4</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(5)">5</button>
+        <button class="calc-button dark clickable" onclick="registerNumber(6)">6</button>
+        <button class="calc-button" onclick="operate('-')">--</button>
 
-        <button class="calc-button dark">1</button>
-        <button class="calc-button dark">2</button>
-        <button class="calc-button dark">3</button>
-        <button class="calc-button">+</button>
+        <button class="calc-button dark" onclick="registerNumber(1)">1</button>
+        <button class="calc-button dark" onclick="registerNumber(2)">2</button>
+        <button class="calc-button dark" onclick="registerNumber(3)">3</button>
+        <button class="calc-button" onclick="operate('+')">+</button>
 
         <button class="calc-button dark">+/-</button>
-        <button class="calc-button dark">0</button>
+        <button class="calc-button dark" onclick="registerNumber(0)">0</button>
         <button class="calc-button dark">,</button>
-        <button class="calc-button light">=</button>
+        <button class="calc-button light" onclick="operate('=')">=</button>
     </div>
 </body>
 

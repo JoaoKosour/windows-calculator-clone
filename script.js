@@ -10,11 +10,13 @@ var secondRemmember = 0;
 var displayNumber = 0;
 
 function registerNumber(number) {
-    if (firstNumber.length > 9 || secondNumber.length > 9)
+    if (firstNumber.length > 9 || secondNumber.length > 9 || displayNumber < 0)
         display.style.fontSize = '25px'
     else
         display.style.fontSize = '50px'
     if (firstNumber.length > 18) return; //we use this 'if' to prevent the number from going over the display size. you can set the number higher if you make the fontsize smaller
+
+
     if (computingSecondNumber) {
         secondNumber.push(number)
         renderDisplay()
@@ -25,8 +27,7 @@ function registerNumber(number) {
 }
 
 function operate(operation) {
-    var num_1 = parseFloat(firstNumber.join('')),
-        num_2, temp;
+    if (!firstNumber.length) return;
     if (computingSecondNumber && secondNumber.length)
         num_2 = parseFloat(secondNumber.join(''))
     else
@@ -35,22 +36,16 @@ function operate(operation) {
     switch (operation) {
         case '+':
             saveOperation = '+'
-
             break;
         case '-':
             saveOperation = '-'
-            temp = num_1 - num_2;
-            firstNumber = ('' + temp).split('')
+
             break;
         case '*':
             saveOperation = '*'
-            temp = num_1 * num_2;
-            firstNumber = ('' + temp).split('')
             break;
         case '/':
             saveOperation = '/'
-            temp = num_1 / num_2;
-            firstNumber = ('' + temp).split('')
             break;
     }
     if (computingSecondNumber) {
@@ -58,12 +53,16 @@ function operate(operation) {
         return;
     }
     computingSecondNumber = true;
+    renderDisplay()
 }
 
 function renderDisplay() {
     if (resultAlreadyComputed) {
         remmember.innerHTML = firstRemmember + ' ' + saveOperation + ' ' + secondRemmember + ' ='
-        display.innerHTML = displayNumber;
+        if (secondNumber.length > 0)
+            display.innerHTML = secondNumber.join('')
+        else
+            display.innerHTML = firstNumber.join('');
         return;
     }
 
@@ -120,12 +119,13 @@ function equal() {
             break;
         case '/':
             displayNumber = firstRemmember / secondRemmember;
+            display.style.fontSize = '25px'
             break;
     }
 
     firstNumber = ('' + displayNumber).split('')
     secondNumber = []
     resultAlreadyComputed = true;
-    console.log(displayNumber)
+    computingSecondNumber = false;
     renderDisplay()
 }
